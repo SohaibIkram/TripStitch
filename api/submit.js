@@ -10,9 +10,9 @@ export default async function handler(req, res) {
   const data = req.body;
 
   try {
-    const emailResponse = await resend.emails.send({
+    const emailResponse = await resend.sendEmail({
       from: 'Travel With Sohaib <onboarding@resend.dev>',
-      to: 'yourgmail@gmail.com', // 🔁 Replace with your Gmail
+      to: ['yourgmail@gmail.com'], // 👈 make sure this is a valid array
       subject: 'New Travel Quote Request',
       html: `
         <h2>New Form Submission</h2>
