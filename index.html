@@ -277,7 +277,7 @@
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Get a Free Quote</h2>
             <div class="bg-white rounded-lg shadow-md p-8">
-                <form id="quoteForm" class="space-y-6">
+                <form id="quoteForm" class="space-y-6" method="POST">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -465,64 +465,70 @@
     </script>
 
     <script id="formScript">
-        document.addEventListener('DOMContentLoaded', function() {
-            const privacyCheckbox = document.getElementById('privacyCheckbox');
-            const submitButton = document.getElementById('submitQuote');
-            const quoteForm = document.getElementById('quoteForm');
-            const formSuccess = document.getElementById('formSuccess');
-            let isChecked = false;
-            
-            privacyCheckbox.addEventListener('click', function() {
-                isChecked = !isChecked;
-                if (isChecked) {
-                    privacyCheckbox.classList.add('checked', 'bg-primary');
-                } else {
-                    privacyCheckbox.classList.remove('checked', 'bg-primary');
-                }
-            });
-            
-            quoteForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (!isChecked) {
-                    alert('Please agree to the privacy policy and terms of service.');
-                    return;
-                }
-                
-                // Simulate form submission
-                submitButton.disabled = true;
-                submitButton.textContent = 'Sending...';
-                
-                setTimeout(function() {
-                    quoteForm.reset();
-                    privacyCheckbox.classList.remove('checked', 'bg-primary');
-                    isChecked = false;
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send My Travel Request';
-                    formSuccess.classList.remove('hidden');
-                    
-                    setTimeout(function() {
-                        formSuccess.classList.add('hidden');
-                    }, 5000);
-                }, 1500);
-            });
-            
-            // Set minimum date for date inputs to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('startDate').min = today;
-            document.getElementById('endDate').min = today;
-            
-            // Ensure end date is after start date
-            document.getElementById('startDate').addEventListener('change', function() {
-                document.getElementById('endDate').min = this.value;
-                
-                // If end date is before start date, reset it
-                if (document.getElementById('endDate').value < this.value) {
-                    document.getElementById('endDate').value = this.value;
-                }
-            });
+  document.addEventListener('DOMContentLoaded', function () {
+    const privacyCheckbox = document.getElementById('privacyCheckbox');
+    const submitButton = document.getElementById('submitQuote');
+    const quoteForm = document.getElementById('quoteForm');
+    const formSuccess = document.getElementById('formSuccess');
+    let isChecked = false;
+
+    privacyCheckbox.addEventListener('click', function () {
+      isChecked = !isChecked;
+      privacyCheckbox.classList.toggle('checked');
+      privacyCheckbox.classList.toggle('bg-primary');
+    });
+
+    quoteForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (!isChecked) {
+        alert('Please agree to the privacy policy and terms of service.');
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      const formData = new FormData(quoteForm);
+      const jsonData = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(jsonData),
         });
-    </script>
+
+        const result = await response.json();
+
+        quoteForm.reset();
+        privacyCheckbox.classList.remove('checked', 'bg-primary');
+        isChecked = false;
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send My Travel Request';
+
+        formSuccess.classList.remove('hidden');
+        setTimeout(() => formSuccess.classList.add('hidden'), 5000);
+      } catch (error) {
+        alert('There was an error submitting the form.');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send My Travel Request';
+      }
+    });
+
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('startDate').min = today;
+    document.getElementById('endDate').min = today;
+
+    document.getElementById('startDate').addEventListener('change', function () {
+      document.getElementById('endDate').min = this.value;
+      if (document.getElementById('endDate').value < this.value) {
+        document.getElementById('endDate').value = this.value;
+      }
+    });
+  });
+</script>
+
 
     <script id="destinationCardScript">
         document.addEventListener('DOMContentLoaded', function() {
