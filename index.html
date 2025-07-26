@@ -621,7 +621,7 @@
             requestButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const card = this.closest('.destination-card');
-                    const destination = card.querySelector('h3').textContent;
+                    const destination = card.querySelector('h3').textContent.trim();
                     
                     // Scroll to quote form and fill in destination
                     document.getElementById('destination').value = destination;
