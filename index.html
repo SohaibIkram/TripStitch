@@ -90,35 +90,7 @@
     #whatsapp-button {
       right: 10px !important;
     }
-      /* Keep service tabs centered */
-.service-tabs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Coming Soon badge desktop style */
-.coming-soon {
-  background: #facc15; /* Tailwind's yellow-400 */
-  color: #000;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-left: 6px;
-  white-space: nowrap;
-}
-
-/* Mobile: move badge below tab text */
-@media (max-width: 500px) {
-  .coming-soon {
-    display: block;
-    margin: 4px auto 0;
-    text-align: center;
   }
-}
-}
-
     </style>
 </head>
 <body class="bg-gray-50">
@@ -186,13 +158,30 @@
     </section>
 
   <!-- Service Tabs -->
-<div class="service-tabs">
-  <button class="bg-primary text-white px-4 py-2 rounded-full">Hotels & Resorts</button>
-  <button class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full flex flex-col items-center">
-    Flight Tickets
-    <span class="coming-soon">Coming Soon</span>
-  </button>
-</div>
+    <section id="services" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">
+          Our Services
+        </h2>
+        <div class="flex justify-center mb-12">
+          <div class="inline-flex p-1 bg-gray-100 rounded-full">
+            <button
+              class="px-6 py-2 text-sm font-medium rounded-full bg-primary text-white whitespace-nowrap"
+            >
+              Hotels & Resorts
+            </button>
+            <button
+              class="px-6 py-2 text-sm font-medium text-gray-600 rounded-full whitespace-nowrap relative group"
+            >
+              Flight Tickets
+              <div
+                class="absolute top-0 -right-2 transform translate-x-full bg-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                Coming Soon
+              </div>
+            </button>
+          </div>
+        </div>
 
     
     <!-- Destinations Section -->
