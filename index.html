@@ -69,6 +69,28 @@
             right: 20px;
             z-index: 100;
         }
+         html, body {
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Mobile-specific nav fixes */
+  @media (max-width: 400px) {
+    nav .px-4 {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    .max-w-7xl {
+      max-width: 100% !important;
+    }
+    /* WhatsApp button full visibility */
+    #whatsapp-button {
+      right: 10px !important;
+    }
+  }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -599,7 +621,7 @@
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/923047743729" class="whatsapp-button w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors">
+    <a href="https://wa.me/923047743729" class="whatsapp-button w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors" id="whatsapp-button">
         <i class="ri-whatsapp-line ri-xl text-white"></i>
     </a>
 
