@@ -91,8 +91,44 @@
       right: 10px !important;
     }
   }
+        #flight-btn {
+  position: relative;
+}
+
+#flight-btn:hover #coming-soon {
+  display: inline-block;
+  top: -35px; /* Show above button */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 640px) {
+  #flight-btn #coming-soon {
+    display: none;
+    position: absolute;
+    bottom: 110%; /* Show above button on mobile */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #flight-btn.active #coming-soon {
+    display: inline-block;
+  }
+}
     </style>
 </head>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const flightBtn = document.getElementById("flight-btn");
+    flightBtn.addEventListener("click", function () {
+      if (window.innerWidth <= 640) {
+        flightBtn.classList.toggle("active");
+      }
+    });
+  });
+</script>
+
+    
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-md fixed w-full z-50">
@@ -157,35 +193,29 @@
         </div>
     </section>
 
-<!-- Service Tabs -->
-<section id="services" class="py-20 bg-gray-50">
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">
-      Our Services
-    </h2>
+    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
     <div class="flex justify-center mb-12">
-      <div class="inline-flex flex-wrap justify-center gap-2 p-1 bg-gray-100 rounded-full">
-        <button
-          class="px-6 py-2 text-sm font-medium rounded-full bg-primary text-white whitespace-nowrap"
-        >
+      <div class="inline-flex p-1 bg-gray-100 rounded-full relative">
+        <!-- Hotels & Resorts Button -->
+        <button class="px-6 py-2 text-sm font-medium rounded-full bg-primary text-white whitespace-nowrap">
           Hotels & Resorts
         </button>
-        <div class="flex flex-col items-center">
-          <button
-            class="px-6 py-2 text-sm font-medium text-gray-600 rounded-full whitespace-nowrap relative"
-          >
-            Flight Tickets
-          </button>
-          <span
-            class="mt-1 bg-primary text-white text-xs px-2 py-0.5 rounded whitespace-nowrap"
-          >
+
+        <!-- Flight Tickets Button -->
+        <button id="flight-btn" class="px-6 py-2 text-sm font-medium text-gray-600 rounded-full whitespace-nowrap relative">
+          Flight Tickets
+          <span id="coming-soon" class="absolute hidden bg-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap shadow-lg">
             Coming Soon
           </span>
-        </div>
+        </button>
       </div>
     </div>
   </div>
 </section>
+
 
 
     
