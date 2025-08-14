@@ -106,24 +106,37 @@
   #flight-btn #coming-soon {
     display: none;
     position: absolute;
-    bottom: 110%; /* Show above button on mobile */
+    bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;
+    line-height: 1; /* Prevent extra padding */
+    margin: 0; /* Prevent spacing issues */
   }
   #flight-btn.active #coming-soon {
     display: inline-block;
   }
 }
+
     </style>
 </head>
 
-    <script>
+ <script>
   document.addEventListener("DOMContentLoaded", function () {
     const flightBtn = document.getElementById("flight-btn");
-    flightBtn.addEventListener("click", function () {
+    const comingSoon = document.getElementById("coming-soon");
+
+    // Toggle when clicking the Flight Tickets button
+    flightBtn.addEventListener("click", function (e) {
+      e.stopPropagation(); // Prevent click from bubbling up
       if (window.innerWidth <= 640) {
         flightBtn.classList.toggle("active");
       }
+    });
+
+    // Hide when clicking anywhere else
+    document.addEventListener("click", function () {
+      flightBtn.classList.remove("active");
     });
   });
 </script>
@@ -205,7 +218,7 @@
         </button>
 
         <!-- Flight Tickets Button -->
-        <button id="flight-btn" class="px-6 py-2 text-sm font-medium text-gray-600 rounded-full whitespace-nowrap relative active">
+        <button id="flight-btn" class="px-6 py-2 text-sm font-medium text-gray-600 rounded-full whitespace-nowrap relative">
           Flight Tickets
           <span id="coming-soon" class="absolute hidden bg-primary text-white text-xs px-2 py-1 rounded whitespace-nowrap shadow-lg">
             Coming Soon
