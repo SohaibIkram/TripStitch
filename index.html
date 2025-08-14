@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,35 +69,41 @@
             right: 20px;
             z-index: 100;
         }
-}
-
     </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
-<nav class="bg-white shadow-md fixed w-full z-50">
-  <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8"> <!-- changed px-4 to px-2 -->
-    <div class="flex justify-between items-center h-16">
-      <div class="flex items-center flex-shrink">
-        <a href="#" class="text-xl sm:text-2xl font-['Pacifico'] text-primary">Tripstitch</a>
-      </div>
-      <div class="hidden md:flex items-center space-x-6">
-        <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
-        <a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
-        <a href="#destinations" class="text-gray-700 hover:text-primary font-medium">Destinations</a>
-        <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
-        <a href="#quote" class="bg-primary text-white px-4 py-2 rounded-button text-sm sm:text-base">Get a Quote</a>
-      </div>
-      <div class="md:hidden flex items-center">
-        <button id="mobile-menu-button" class="text-gray-700 w-8 h-8 flex items-center justify-center">
-          <i class="ri-menu-line ri-lg"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-primary">Tripstitch</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium">About</a>
+                    <a href="#destinations" class="text-gray-700 hover:text-primary font-medium">Destinations</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                    <a href="#quote" class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap">Get a Quote</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 w-10 h-10 flex items-center justify-center">
+                        <i class="ri-menu-line ri-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">About</a>
+                <a href="#destinations" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Destinations</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-primary font-medium">Contact</a>
+                <a href="#quote" class="block px-3 py-2 bg-primary text-white !rounded-button whitespace-nowrap text-center mt-4">Get a Quote</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section min-h-screen flex items-center justify-center text-white">
