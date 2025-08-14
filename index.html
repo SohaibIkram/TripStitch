@@ -118,6 +118,33 @@
   }
 }
 
+        #flight-btn {
+  position: relative; /* So "Coming Soon" stays anchored to it */
+}
+
+#coming-soon {
+  display: none; /* Hidden by default */
+  position: absolute;
+  bottom: 110%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  line-height: normal;
+  margin: 0;
+  padding: 4px 8px;
+  z-index: 9999;
+}
+
+#flight-btn.active #coming-soon {
+  display: block; /* Show when active */
+}
+
+@media (max-width: 640px) {
+  #coming-soon {
+    font-size: 0.75rem;
+  }
+}
+
     </style>
 </head>
 
