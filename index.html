@@ -92,32 +92,37 @@
       right: 10px !important;
     }
   }
-        #flight-btn {
+
+    #flight-btn {
   position: relative;
+}
+
+#coming-soon {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: -28px; /* fixed distance above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  padding: 4px 8px;
+  background: #4A90E2;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 6px;
+  z-index: 9999;
 }
 
 #flight-btn:hover #coming-soon {
   display: inline-block;
-  top: -35px; /* Show above button */
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 @media (max-width: 640px) {
-  #flight-btn #coming-soon {
-    display: none;
-    position: absolute;
-    bottom: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    line-height: 1; /* Prevent extra padding */
-    margin: 0; /* Prevent spacing issues */
-  }
   #flight-btn.active #coming-soon {
     display: inline-block;
   }
 }
+
 
     </style>
 </head>
