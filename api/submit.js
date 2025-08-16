@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   try {
     const emailResponse = await resend.sendEmail({
       from: 'Travel With Sohaib <onboarding@resend.dev>',
-      to: ['sohaib.ikram@gmail.com'], // 👈 make sure this is a valid array
+      to: ['sohaib.ikram7@gmail.com'], // 👈 make sure this is a valid array
       subject: 'New Travel Quote Request',
       html: `
         <h2>New Form Submission</h2>
