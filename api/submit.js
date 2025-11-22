@@ -10,9 +10,10 @@ export default async function handler(req, res) {
   const data = req.body;
 
   try {
+    // 1️⃣ Send Email (existing)
     const emailResponse = await resend.sendEmail({
       from: 'Travel With Sohaib <onboarding@resend.dev>',
-      to: ['sohaib.ikram7@gmail.com'], // 👈 make sure this is a valid array
+      to: ['sohaib.ikram7@gmail.com'],
       subject: 'New Travel Quote Request',
       html: `
         <h2>New Form Submission</h2>
@@ -28,7 +29,19 @@ export default async function handler(req, res) {
     });
 
     console.log(emailResponse);
-    return res.status(200).json({ message: 'Form submitted and email sent!' });
+
+    // 2️⃣ NEW — Forward data to Make.com webhook
+    await fetch("https://hook.eu1.make.com/hg3x39ysgtynr5jrkowxue2br4yc3pe4", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    // 3️⃣ Final Response
+    return res.status(200).json({
+      message: 'Form submitted: Email sent + Make.com workflow triggered!'
+    });
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Failed to send email.' });
